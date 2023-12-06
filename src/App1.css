@@ -80,3 +80,32 @@ h1{
     /* background-color: red; */
     color: white;
 }
+.chatbot-container .chat-title{
+    /* background-color: rgb(10, 126, 126); */
+    width: 97vw;
+    margin-top: 60px;
+    color: azure;
+    /* padding-top: 2%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.chatbot-container .dsclmr{
+    color: azure;
+    position: absolute;
+    bottom: 10px;
+    left: 40%;
+    font-size: 12px;
+}
+.chatbot-input input{
+position: relative;
+top:3vw;
+width: 30vw;
+left: 35vw;
+}
+.chatbot-input  button{
+    position: absolute;
+    top: 15.5em;;
+    width: 6vw;
+    left: 59.65vw;
+}
