@@ -1,73 +1,49 @@
-// import React, { Component } from 'react';
-// import openai from 'openai';
+import React, { useState } from 'react';
+// import './Chatbot.css';
 
-// class App extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       input: '',
-//       response: ''
-//     };
+const Chatbot = () => {
+  const [userInput, setUserInput] = useState('');
+  const [chatHistory, setChatHistory] = useState([]);
 
-//     // Initialize OpenAI API
-//     openai.api_key = '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'; // Replace 'YOUR_API_KEY' with your actual API key
-//   }
+  const handleSubmit = () => {
+    if (userInput === '') return;
 
-//   handleInputChange = (event) => {
-//     this.setState({ input: event.target.value });
-//   };
+    const newMessage = {
+      user: true,
+      message: userInput,
+    };
 
-//   handleSubmit = (event) => {
-//     event.preventDefault();
-//     const input = this.state.input;
+    setChatHistory([...chatHistory, newMessage]);
+    setUserInput('');
 
-//     // Send ChatGPT request
-//     openai.complete({
-//       prompt: input,
-//       model: 'chatgpt'
-//     })
-//       .then((response) => {
-//         this.setState({ response: response.data.choices[0].text });
-//       })
-//       .catch((error) => {
-//         console.error('ChatGPT error:', error);
-//       });
-//   };
+    // Simulate a delayed response from the chatbot
+    setTimeout(() => {
+      const chatbotResponse = {
+        user: false,
+        message: 'Chatbot response: ' + userInput,
+      };
 
-//   render() {
-//     return (
-//       <div className="chatbot-container">
-//         <h1>ChatGPT</h1>
-//         <form onSubmit={this.handleSubmit}>
-//           <input
-//             type="text"
-//             value={this.state.input}
-//             onChange={this.handleInputChange}
-//             placeholder="Enter your prompt"
-//           />
-//           <button type="submit">Submit</button>
-//         </form>
-//         <div className="response-container">
-//           <p>{this.state.response}</p>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
+      setChatHistory([...chatHistory, chatbotResponse]);
+    }, 1000);
+  };
 
-// export default App;
+  const handleChange = (event) => {
+    setUserInput(event.target.value);
+  };
 
+  return (
+    <div className="chatbot-container">
+      <div className="chat-title">
+        <h2>Ask anything</h2>
+      </div>
 
-// import React, { useEffect } from 'react';
-// import { OpenAI } from 'openai';
+      <div className="chatbot-input">
+        <input type="text" value={userInput} onChange={handleChange} placeholder="Enter your message" />
+        <button onClick={handleSubmit}>Send</button>
+      </div>
+      <div className="dsclmr">You may found that chat is not working as it's in underprogress!</div>
+    </div>
+  );
+};
 
-// const CheckOpenAI = () => {
-//   useEffect(() => {
-//     const openai = new OpenAI({ key: 'YOUR_API_KEY' });
-//     console.log(openai);
-//   }, []);
-
-//   return <div>Checking OpenAI...</div>;
-// };
-
-// export default CheckOpenAI;
+export default Chatbot;
