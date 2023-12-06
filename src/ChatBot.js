@@ -41,7 +41,7 @@ const Chatbot = () => {
         <input type="text" value={userInput} onChange={handleChange} placeholder="Enter your message" />
         <button onClick={handleSubmit}>Send</button>
       </div>
-      <div className="dsclmr">You may found that chat section is not working as it's in underprogress</div>
+      <div className="dsclmr">You may found that chat is not working as its in underprogress</div>
     </div>
   );
 };
